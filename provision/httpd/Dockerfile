@@ -11,7 +11,7 @@ RUN yum -y install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-RUN yum-config-manager --enable remi-php73
+RUN yum-config-manager --enable remi-php74
 
 RUN yum -y update
 
