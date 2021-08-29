@@ -2,8 +2,12 @@ import Vue from 'vue';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('app') !== null) {
-    new Vue({
+    const app = new Vue({
       el: '#app',
     });
+
+    return app;
   }
+
+  return false;
 });
