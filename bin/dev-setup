@@ -1,0 +1,21 @@
+#! /bin/bash
+
+set -e
+
+docker
+
+cp .env.example .env
+
+docker-compose up -d --build
+
+./bin/php artisan key:generate
+
+./bin/php composer install
+
+./bin/php artisan migrate:fresh --seed
+
+./bin/npm install
+
+
+
+
