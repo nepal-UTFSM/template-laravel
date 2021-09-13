@@ -15,13 +15,13 @@ const Dotenv = require('dotenv-webpack');
 
 mix.js('resources/js/app.js', 'public/js').vue();
 
+mix.postCss('resources/css/app.css', 'public/css');
+
 mix.webpackConfig({
   plugins: [
     new Dotenv(),
   ],
 });
-
-mix.postCss('resources/css/app.css', 'public/css');
 
 mix.extract();
 
