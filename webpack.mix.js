@@ -23,9 +23,10 @@ mix.webpackConfig({
 
 mix.postCss('resources/css/app.css', 'public/css');
 
+mix.extract();
+
 if (mix.inProduction()) {
   mix.version();
-  mix.extract();
 } else {
   mix.sourceMaps();
 }
