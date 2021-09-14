@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  httpd:
-    build: ./provision/httpd
+  php:
+    build: ./provision/php_hostgator
     ports:
       - '80:80'
     volumes:
