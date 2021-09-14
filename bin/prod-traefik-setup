@@ -1,0 +1,11 @@
+#! /bin/bash
+
+docker-compose up -d --build
+
+./bin/dotenv -f .env set DB_PORT=$(./bin/get-port db 3306)
+
+sudo chmod o+w -R ./storage/
+
+composer install --no-dev
+
+npm install --only=prod

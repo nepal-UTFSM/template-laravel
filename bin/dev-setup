@@ -2,20 +2,20 @@
 
 set -e
 
-docker
+sudo false
+
+./bin/dev-check
 
 cp .env.example .env
 
 docker-compose up -d --build
 
-./bin/php artisan key:generate
+sudo chmod o+w -R ./storage/
 
-./bin/php composer install
+composer install
 
-./bin/php artisan migrate:fresh --seed
+npm install
 
-./bin/npm install
+php artisan key:generate
 
-
-
-
+./bin/exec php artisan migrate:fresh --seed

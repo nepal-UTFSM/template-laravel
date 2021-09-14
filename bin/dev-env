@@ -3,13 +3,3 @@
 set -e
 
 docker-compose up -d --build
-
-./bin/composer install
-
-./bin/npm ci
-
-
-
-
-
-
