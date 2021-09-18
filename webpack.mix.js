@@ -29,4 +29,8 @@ if (mix.inProduction()) {
   mix.version();
 } else {
   mix.sourceMaps();
+  mix.browserSync({
+    proxy: 'localhost',
+    open: false,
+  });
 }
