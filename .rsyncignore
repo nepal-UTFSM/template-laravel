@@ -1,0 +1,9 @@
+.git/
+.github/
+.env
+.phpunit.result.cache
+.htaccess
+node_modules/
+storage/logs/laravel.log
+tests/
+
