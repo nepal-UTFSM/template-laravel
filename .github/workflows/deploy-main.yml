@@ -4,19 +4,31 @@ on:
   push:
     branches:
       - main
-  
+
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: clone repo 
+      - name: clone repo
         uses: actions/checkout@v2
         with:
           ref: main
           path: source
-          
+
+      - name: Read phpenv-version
+        id: phpenv-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.phpenv-version
+
+      - name: Setup PHP
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.phpenv-version.outputs.content }}
+
       - name: cache npm
         uses: actions/cache@v2
         with:
@@ -32,8 +44,8 @@ jobs:
       - name: prod setup
         run: cd source ; bin/prod-setup
 
-      - name: purge ignored files 
-        run: rsync -a -c -v -z -h --no-links --exclude-from='source/.rsyncignore' source/ application
+      - name: purge ignored files
+        run: rsync -a -c -v -z -h --exclude-from='source/.rsyncignore' source/ application
 
       - name: tar application
         run: tar -c -z -f application.tar application
@@ -43,7 +55,7 @@ jobs:
         with:
           name: application
           path: application.tar
-          
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -52,7 +64,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: application
-          
+
       - name: untar application
         run: tar -x -f application.tar
 
@@ -77,7 +89,7 @@ jobs:
       - name: deploy to server
         uses: easingthemes/ssh-deploy@main
         env:
-          ARGS: "-a -c -v -z -h --no-links --exclude-from='application/.rsyncignore' --delete-after"
+          ARGS: "-a -c -v -z -h --exclude-from='application/.rsyncignore' --delete-after"
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
@@ -93,7 +105,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-env
           use_insecure_cipher: true
-          
+
       - name: laravel up
         uses: appleboy/ssh-action@master
         with:
@@ -103,7 +115,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-php artisan up
           use_insecure_cipher: true
-          
+
       - name: update deployment status
         uses: bobheadxi/deployments@v0.4.3
         if: always()
@@ -112,4 +124,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.start_deploy.outputs.deployment_id }}
-
+          env_url: "${{ secrets.REMOTE_URL_MAIN }}"

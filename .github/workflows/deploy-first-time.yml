@@ -1,10 +1,6 @@
-name: Deploy prod
+name: First deploy main
 
 on:
-  push:
-    branches:
-      - prod
-
   workflow_dispatch:
 
 jobs:
@@ -14,7 +10,7 @@ jobs:
       - name: clone repo
         uses: actions/checkout@v2
         with:
-          ref: prod
+          ref: main
           path: source
 
       - name: Read phpenv-version
@@ -74,17 +70,7 @@ jobs:
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: production
-
-      - name: laravel down
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_PROD }} ; bin/prod-php artisan down --render="errors::503" --secret="force-up"
-          use_insecure_cipher: true
+          env: staging
 
       - name: deploy to server
         uses: easingthemes/ssh-deploy@main
@@ -93,7 +79,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          TARGET: ${{ secrets.REMOTE_PATH_PROD }}
+          TARGET: ${{ secrets.REMOTE_PATH_MAIN }}
           SOURCE: application/
 
       - name: laravel cache
@@ -103,17 +89,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_PROD }} ; bin/prod-env
-          use_insecure_cipher: true
-
-      - name: laravel up
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_PROD }} ; bin/prod-php artisan up
+          script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-env
           use_insecure_cipher: true
 
       - name: update deployment status
@@ -124,4 +100,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.start_deploy.outputs.deployment_id }}
-          env_url: "${{ secrets.REMOTE_URL_PROD }}"
