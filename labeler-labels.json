@@ -11,7 +11,12 @@
 			"color": "474A8A"
 		},
 		{
-			"name": "js",
+			"name": "javascript",
+			"description": "",
+			"color": "F0DB4F"
+		},
+    {
+			"name": "investigation",
 			"description": "",
 			"color": "F0DB4F"
 		},

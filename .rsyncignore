@@ -4,6 +4,7 @@
 .phpunit.result.cache
 .htaccess
 node_modules/
-storage/logs/laravel.log
+storage/app/
+storage/framework/
+storage/logs/
 tests/
-
