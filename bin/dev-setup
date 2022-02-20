@@ -4,20 +4,22 @@
 
 set -e
 
-sudo false
-
 ./bin/dev-check
-
-cp .env.example .env
 
 docker-compose up -d --build
 
-./bin/set-permissions
+cp .env.example .env
+cp public/.htaccess.example public/.htaccess
+ln -s -r public/vendor storage/app/assets
+
+sudo ./bin/set-permissions
 
 composer install
-
 npm install
 
 php artisan key:generate
+php artisan storage:link --relative
 
-./bin/exec php artisan migrate:fresh --seed
+./bin/dev-exec php artisan migrate:fresh
+
+./bin/dev-env
