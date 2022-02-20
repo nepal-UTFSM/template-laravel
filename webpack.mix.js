@@ -19,7 +19,9 @@ mix.postCss('resources/css/app.css', 'public/css');
 
 mix.webpackConfig({
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      expand: true,
+    }),
   ],
 });
 
@@ -30,7 +32,11 @@ if (mix.inProduction()) {
 } else {
   mix.sourceMaps();
   mix.browserSync({
-    proxy: 'localhost',
+    proxy: {
+      target: 'localhost:80',
+      ws: true,
+    },
     open: false,
+    tunnel: false,
   });
 }
