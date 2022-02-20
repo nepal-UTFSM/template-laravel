@@ -30,6 +30,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Actual Application Environment
+    |--------------------------------------------------------------------------
+    |
+    | Maybe you want to run your application as production, without be in
+    | actually production. This determine the real environment, like staging.
+    |
+    */
+
+    'actual_env' => env('ACTUAL_ENV', 'production'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
