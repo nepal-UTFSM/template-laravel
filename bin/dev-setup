@@ -10,7 +10,6 @@ docker-compose up -d --build
 
 cp .env.example .env
 cp public/.htaccess.example public/.htaccess
-ln -s -r public/vendor storage/app/assets
 
 sudo ./bin/set-permissions
 
