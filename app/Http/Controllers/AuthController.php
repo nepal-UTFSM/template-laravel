@@ -17,10 +17,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('tasks.index'));
+            return redirect()->intended(route('admin.index'));
         }
 
-        return back()->withInput($request->except('password'))->with('errors', __('auth.failed'));
+        return back()->withInput($request->except('password'))->withErrors(__('auth.failed'));
 
     }
 
