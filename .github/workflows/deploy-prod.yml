@@ -52,8 +52,8 @@ jobs:
           SOURCE: ${{ secrets.REMOTE_PATH_PROD }}/.env
           TARGET: ./source
 
-      - name: prod setup
-        run: cd source ; bin/prod-setup
+      - name: build
+        run: cd source ; bin/cd-build
 
       - name: purge ignored files
         run: rsync -a -c -v -z -h --exclude-from='source/.rsyncignore' source/ application

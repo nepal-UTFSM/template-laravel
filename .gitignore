@@ -2,6 +2,9 @@
 /public/hot
 /public/sitemap.xml
 /public/mix-manifest.json
+/public/assets
+/public/.htaccess
+/resources/js/ziggy.js
 /storage/*.key
 /vendor
 .env
@@ -14,6 +17,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/public/.htaccess
 error_log
-resources/js/ziggy.js
