@@ -12,19 +12,22 @@
     <meta name="description" content="@yield('meta_desc')">
     <meta name="robots" content="@yield('meta_robots')">
     <link rel="canonical" href="{{ Request::url() }}">
+    {!! \Sentry\Laravel\Integration::sentryTracingMeta() !!}
 
     <link rel="stylesheet" href="{{ mix('css/app.css')}}">
 
-    <script defer src="{{ mix('js/app.js') }}"></script>
     @stack('import_head')
-    <script defer src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
   </head>
-  <body>
+  <body class="min-h-screen bg-gray-100">
     @include('main.template.tag-manager-noscript')
 
-    @yield('content')
+    <div id="app" class="h-full">
+      @yield('content')
+    </div>
 
-    @include('main.template.brand')
+    <script defer src="{{mix('/js/manifest.js')}}"></script>
+    <script defer src="{{mix('/js/vendor.js')}}"></script>
+    <script defer src="{{mix('/js/app.js')}}"></script>
 
     @stack('import_foot')
   </body>
