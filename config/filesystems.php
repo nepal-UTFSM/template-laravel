@@ -60,6 +60,11 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'database_data' => [
+            'driver' => 'local',
+            'root' => 'database/data',
+        ],
+
     ],
 
     /*
@@ -75,6 +80,7 @@ return [
 
     'links' => [
         public_path('assets') => storage_path('app/assets'),
+        storage_path('app/assets/vendor') => public_path('vendor'),
     ],
 
 ];
