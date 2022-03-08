@@ -18,6 +18,7 @@ npm install
 
 php artisan key:generate
 php artisan storage:link --relative
+php artisan ide-helper:generate
 
 ./bin/dev-exec php artisan migrate:fresh
 
