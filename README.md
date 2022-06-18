@@ -1,44 +1,88 @@
-# Laravel Template
+# Laravel template
 
-## Initial setup
+## Stack
 
-### Github Secrets
+- PHP 8.1
+- ECMAScript 6
+- Node 16
+- Laravel 9
+- Vue 3
+- PostCSS ?
 
-Set this secrets before running workflows:
+## Linters
 
-- `SSH_HOST`
-- `SSH_PORT`
-- `SSH_USER`
-- `SSH_KEY`
-- `REMOTE_PATH_MAIN` without trail '/'
-- `REMOTE_PATH_PROD` without trail '/'
-- `REMOTE_URL_MAIN` with 'https://...'
-- `REMOTE_URL_PROD` with 'https://...'
-- `SENTRY_PROJECT` (not used)
-- `SENTRY_ORG` (not used)
-- `SENTRY_TOKEN` (not used)
+### PHP
 
-## Actions
+- phpcs (should be install globally)
+- [x] [vscode](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs)
+- [ ] action
 
-- Deploy main (to staging)
-- Deploy prod (to production)
+```bash
+composer global require squizlabs/php_codesniffer
+composer global require emielmolenaar/phpcs-laravel
+```
 
-### .rsyncigore
+- php built-in linter
+  - [x] vscode built-in plugin
+  - [ ] action
 
-All inside this file will be ignored when deploying.
+- phpstan with larastan (already installed)
+  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=swordev.phpstan)
+  - [ ] action
 
-Notes:
+- tlint?
 
-- All items inside `storage` are ignored. If a new filesystem inside there is defined, you must create the forlder first.
+### JS
 
-## Conventions
+- eslint (rules from [Potassium](https://github.com/platanus/potassium/blob/master/lib/potassium/assets/.eslintrc.json))
+  - [x] vscode
+  - [ ] action
 
-- [Good practices](https://github.com/alexeymezenin/laravel-best-practices)
+- stylelint (rules from [Potassium](https://github.com/platanus/potassium/blob/master/lib/potassium/assets/.stylelintrc.json))
+  - [ ] vscode
+  - [ ] action
 
-## Tools
+### Extra
 
-- Laravel Dusk
-- Laravel Telescope
-- Sentry
-- Laravel Ide Helper
-- Laravel Tlint
+- dotenv-lint?
+
+## Testing
+
+### PHP with Pest
+
+```bash
+php artisan test
+```
+
+- [ ] code coverage
+- [ ] action
+
+### Browser with Laravel Dusk
+
+```bash
+php artisan pest:dusk
+```
+
+- [ ] action
+
+### JS with Jest
+
+```bash
+TODO
+```
+
+- [ ] code coverage
+- [ ]  action
+
+## Github Actions
+
+### integration workflow
+
+- [ ] Build PHP
+- [ ] Build Node
+- [ ] composer cache
+- [ ] composer isntall
+- [ ] node cache
+- [ ] node install
+- [ ] run linters
+- [ ] run testing

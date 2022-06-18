@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel Standards">
+
+    <description>The Laravel Coding Standards from https://github.com/emielmolenaar/phpcs-laravel</description>
+
+    <rule ref="phpcs-laravel"/>
+
+    <arg name="colors"/>
+    <ini name="memory_limit" value="128M"/>
+
+    <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+    <rule ref="ImportDetection.Imports.RequireImports.Symbol">
+        <severity>0</severity>
+    </rule>
+
+</ruleset>

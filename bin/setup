@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# Run this command just after cloning the repo
+
+set -e
+
+php_env="$(cat .php-version)"
+phpenv install -s $php_env
+
+# copy example files
+
+composer install
+npm install
+
+# setup laravel

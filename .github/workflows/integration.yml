@@ -1,0 +1,50 @@
+name: Integration
+
+on:
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v2
+        with:
+          path: source
+
+      - name: Read php-version
+        id: php-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.php-version
+
+      - name: Setup PHP
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php-version.outputs.content }}
+
+      - name: Read node-version
+        id: node-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.node-version
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.node-version.outputs.content }}
+
+      - name: cache npm
+        uses: actions/cache@v2
+        with:
+          path: source/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('source/package-lock.json') }}
+
+      - name: cache composer
+        uses: actions/cache@v2
+        with:
+          path: source/vendor
+          key: ${{ runner.os }}-${{ hashFiles('source/composer.lock') }}
+
