@@ -7,9 +7,17 @@ set -e
 php_env="$(cat .php-version)"
 phpenv install -s $php_env
 
-# copy example files
+cp .env.example .env
+cp public/.htaccess.example public/.htaccess
 
 composer install
 npm install
 
-# setup laravel
+sudo chmod a+w -R ./bootstrap/
+sudo chmod a+w -R ./storage/
+
+php artisan key:generate
+php artisan db:testing
+php artisan migrate:fresh
+php artisan storage:link --relative
+php artisan ide-helper:generate -H

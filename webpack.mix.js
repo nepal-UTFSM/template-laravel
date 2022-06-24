@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+const Dotenv = require('dotenv-webpack');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +13,28 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/js').vue();
+
+mix.postCss('resources/css/app.css', 'public/css');
+
+mix.webpackConfig({
+  plugins: [
+    new Dotenv(),
+  ],
+});
+
+mix.extract();
+
+if (mix.inProduction()) {
+  mix.version();
+} else {
+  mix.sourceMaps();
+  mix.browserSync({
+    proxy: {
+      target: 'localhost:80',
+      ws: true,
+    },
+    open: false,
+    tunnel: true,
+  });
+}

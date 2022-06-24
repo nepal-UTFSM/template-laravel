@@ -9,6 +9,21 @@
 - Vue 3
 - PostCSS ?
 
+## Packages
+
+### PHP
+
+    "laravel/scout": "^9.4",
+    "laravel/telescope": "^4.9",
+    "laravel/tinker": "^2.7",
+    "propaganistas/laravel-phone": "^4.3",
+    "rap2hpoutre/laravel-log-viewer": "^2.2",
+    "sentry/sentry-laravel": "^2.12",
+    "spatie/laravel-robots-middleware": "^1.3",
+    "spatie/laravel-sitemap": "^6.2",
+    "spatie/schema-org": "^3.11",
+    "teamtnt/tntsearch": "^2.9"
+
 ## Linters
 
 ### PHP
