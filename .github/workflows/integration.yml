@@ -6,13 +6,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
+  build:
+    build:
+     uses: ./.github/workflows/build.yml
+
+  lint:
+    needs: build
+    runs-on: ubuntu-22.04
     steps:
-      - name: clone repo
-        uses: actions/checkout@v2
+      - name: download application
+        uses: actions/download-artifact@v2
         with:
-          path: source
+          name: full_application
 
       - name: Read php-version
         id: php-version
@@ -20,11 +25,42 @@ jobs:
         with:
           path: source/.php-version
 
+      - name: Read node-version
+        id: node-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.node-version
+
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ steps.php-version.outputs.content }}
           extensions: pdo_sqlite
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.node-version.outputs.content }}
+
+      - name: Lint source
+        working-directory: source
+        run: .github/scripts/lint.sh
+
+  test:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: download application
+        uses: actions/download-artifact@v2
+        with:
+          name: full_application
+
+      - name: Read php-version
+        id: php-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.php-version
 
       - name: Read node-version
         id: node-version
@@ -32,37 +68,13 @@ jobs:
         with:
           path: source/.node-version
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php-version.outputs.content }}
+          extensions: pdo_sqlite
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ steps.node-version.outputs.content }}
-
-      - name: Cache npm
-        if: ${{ !env.ACT }}
-        uses: actions/cache@v2
-        with:
-          path: source/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('source/package-lock.json') }}
-
-      - name: Cache composer
-        if: ${{ !env.ACT }}
-        uses: actions/cache@v2
-        with:
-          path: source/vendor
-          key: ${{ runner.os }}-${{ hashFiles('source/composer.lock') }}
-
-      - uses: mirromutth/mysql-action@v1.1
-        if: ${{ !env.ACT }}
-        with:
-          host port: 3800 # Optional, default value is 3306. The port of host
-          mysql database: 'testing' # Optional, default value is "test". The specified database which will be create
-          mysql root password: admin # Required if "mysql user" is empty, default is empty. The root superuser password
-
-      - name: Build source
-        working-directory: source
-        run: .github/scripts/build.sh
-
-      - name: Lint source
-        working-directory: source
-        run: .github/scripts/lint.sh
-

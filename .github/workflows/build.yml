@@ -9,7 +9,7 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
@@ -61,8 +61,9 @@ jobs:
         working-directory: source
         run: .github/scripts/build.sh
 
-      - name: Tar
-        run: tar -c -z -f full_application.tar source
+
+      - name: Tar source
+        run: tar -c -f full_application.tar source
 
       - name: Upload full application
         uses: actions/upload-artifact@v2
