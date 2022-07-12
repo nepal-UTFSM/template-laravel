@@ -1,1 +1,1 @@
--P ubuntu-latest=shivammathur/node:latest
+-P ubuntu-22.04=shivammathur/node:latest

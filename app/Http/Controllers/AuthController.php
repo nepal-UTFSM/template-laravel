@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request): RedirectResponse a
+    public function login(LoginRequest $request): RedirectResponse
     {
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
