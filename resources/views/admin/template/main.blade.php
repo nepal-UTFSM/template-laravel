@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8"/>
 
-    <title></title>
+    <x-gtm.script/>
+
+    <title>@yield('title', 'Laravel App Admin')</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="">
@@ -15,7 +17,8 @@
 
     @stack('import_head')
   </head>
-  <body class="bg-gray-100 dark:bg-gray-900 dark:text-white" >
+  <body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
+    <x-gtm.no-script></x-gtm.no-script>
     <div id="app">
       @include('admin.template.navbar')
 

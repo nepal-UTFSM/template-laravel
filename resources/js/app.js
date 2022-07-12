@@ -1,19 +1,21 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 // eslint-disable-next-line no-unused-vars
 import Iconify from '@iconify/iconify';
+
+import { camelizeKeys } from 'humps';
 
 import * as Sentry from '@sentry/vue';
 import { Integrations } from '@sentry/tracing';
 
-// import { camelizeKeys } from 'humps';
+import i18n from './locales';
+import pinia from './stores';
 
-// import i18n from './locales';
-// import store from './store';
+import ExampleComponent from './components/exampleComponent.vue';
 
-//Vue.filter('camelizeKeys', camelizeKeys);
+const app = createApp();
 
 Sentry.init({
-  Vue,
+  app,
   dsn: process.env.SENTRY_DSN || null,
   environment: process.env.SENTRY_ENVIRONMENT,
   integrations: [
@@ -23,18 +25,13 @@ Sentry.init({
   tracesSampleRate: process.env.SENTRY_TRACES_SAMPLE_RATE || false,
 });
 
-// eslint-disable-next-line max-statements
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('app') !== null) {
-    const app = new Vue({
-      el: '#app',
-      // store,
-      // i18n,
+app.use(i18n);
+app.use(pinia);
 
-    });
+app.config.globalProperties.$filters = {
+  camelizeKeys,
+};
 
-    return app;
-  }
+app.component('ExampleComponent', ExampleComponent);
 
-  return false;
-});
+app.mount('#app');

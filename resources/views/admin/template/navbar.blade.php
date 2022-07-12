@@ -16,7 +16,7 @@
   <div class="my-auto">
     {{ auth()->user()->name ?? 'guest' }}
   </div>
-  <a class="my-auto bg-indigo-900 p-2 rounded" href="{{ route('auth.logout') }}">
-    Log out
+  <a class="my-auto bg-indigo-900 p-2 rounded flex items-center gap-2" href="{{ route('auth.logout') }}">
+    <span class="iconify" data-icon="mdi:logout"></span> Log out
   </a>
 </nav>

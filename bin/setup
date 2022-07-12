@@ -20,4 +20,4 @@ php artisan key:generate
 php artisan db:testing
 php artisan migrate:fresh
 php artisan storage:link --relative
-php artisan ide-helper:generate -H
+php artisan ide-helper:generate -W

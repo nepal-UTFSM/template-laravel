@@ -2,9 +2,8 @@
 
 namespace App\View\Components\Admin\Resource;
 
-use Illuminate\View\Component;
-use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\View\Component;
 
 class Index extends Component
 {
@@ -14,15 +13,15 @@ class Index extends Component
     public function __construct(
         public string $modelName,
         public Collection $models,
-        public array $attrs
+        public array $attrs,
+        public ?string $query,
     ) {
-        //
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render() : View|Closure|string
+    public function render()
     {
         return view('components.admin.resource.index');
     }

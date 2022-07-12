@@ -40,7 +40,7 @@ return [
     |
     */
 
-    'actual_env' => env('ACTUAL_ENV', 'production'),
+    'actual_env' => env('APP_ACTUAL_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------

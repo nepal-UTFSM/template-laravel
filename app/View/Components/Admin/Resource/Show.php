@@ -2,9 +2,8 @@
 
 namespace App\View\Components\Admin\Resource;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\View\Component;
 
 class Show extends Component
 {
@@ -21,7 +20,7 @@ class Show extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render() : View|Closure|string
+    public function render()
     {
         return view('components.admin.resource.show');
     }

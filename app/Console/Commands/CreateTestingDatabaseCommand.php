@@ -9,24 +9,18 @@ class CreateTestingDatabaseCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'db:testing';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Create database for testing purposes';
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         DB::statement('CREATE DATABASE testing');
 

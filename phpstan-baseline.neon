@@ -1,0 +1,151 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\UserController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\UserController\\:\\:destroy\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\UserController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\UserController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\UserController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: "#^Parameter \\#1 \\$provider of method Illuminate\\\\Http\\\\RedirectResponse\\:\\:withErrors\\(\\) expects array\\|Illuminate\\\\Contracts\\\\Support\\\\MessageProvider\\|string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Controllers/AuthController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:destroy\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:me\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\View\\\\View\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Parameter \\#1 \\$view of function view expects view\\-string\\|null, string given\\.$#"
+			count: 1
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Parameter \\$request of method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:store\\(\\) has invalid type App\\\\Http\\\\Requests\\\\StoreUserRequest\\.$#"
+			count: 2
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Parameter \\$request of method App\\\\Http\\\\Controllers\\\\User\\\\UserController\\:\\:update\\(\\) has invalid type App\\\\Http\\\\Requests\\\\UpdateUserRequest\\.$#"
+			count: 2
+			path: app/Http/Controllers/User/UserController.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\UserPolicy\\:\\:create\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\UserPolicy\\:\\:delete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\UserPolicy\\:\\:forceDelete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\UserPolicy\\:\\:restore\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\UserPolicy\\:\\:update\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Cache\\\\RateLimiting\\\\Limit\\:\\:by\\(\\) expects string, int\\<min, \\-1\\>\\|int\\<1, max\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^Method App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\Index\\:\\:__construct\\(\\) has parameter \\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection but does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/Index.php
+
+		-
+			message: "#^Property App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\Index\\:\\:\\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/Index.php
+
+		-
+			message: "#^Method App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\IndexTable\\:\\:__construct\\(\\) has parameter \\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection but does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/IndexTable.php
+
+		-
+			message: "#^Property App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\IndexTable\\:\\:\\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/IndexTable.php
+
+		-
+			message: "#^Method App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\Table\\:\\:__construct\\(\\) has parameter \\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection but does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/Table.php
+
+		-
+			message: "#^Parameter \\#1 \\$view of function view expects view\\-string\\|null, string given\\.$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/Table.php
+
+		-
+			message: "#^Property App\\\\View\\\\Components\\\\Admin\\\\Resource\\\\Table\\:\\:\\$models with generic class Illuminate\\\\Database\\\\Eloquent\\\\Collection does not specify its types\\: TKey, TModel$#"
+			count: 1
+			path: app/View/Components/Admin/Resource/Table.php
+
+		-
+			message: "#^Method App\\\\View\\\\Components\\\\SchemaOrg\\:\\:render\\(\\) should return Closure\\|Illuminate\\\\Contracts\\\\Support\\\\Htmlable\\|Illuminate\\\\Contracts\\\\View\\\\View\\|string but returns ''\\|array\\|float\\|int\\.$#"
+			count: 1
+			path: app/View/Components/SchemaOrg.php

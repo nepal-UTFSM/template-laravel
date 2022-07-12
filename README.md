@@ -7,36 +7,30 @@
 - Node 16
 - Laravel 9
 - Vue 3
-- PostCSS ?
+- Tailwind
 
 ## Packages
 
-### PHP
+### SEO
 
-    "laravel/scout": "^9.4",
-    "laravel/telescope": "^4.9",
-    "laravel/tinker": "^2.7",
-    "propaganistas/laravel-phone": "^4.3",
-    "rap2hpoutre/laravel-log-viewer": "^2.2",
-    "sentry/sentry-laravel": "^2.12",
-    "spatie/laravel-robots-middleware": "^1.3",
-    "spatie/laravel-sitemap": "^6.2",
-    "spatie/schema-org": "^3.11",
-    "teamtnt/tntsearch": "^2.9"
+ - spatie/laravel-robots-middleware
+ - spatie/laravel-sitemap
+ - spatie/schema-org
+ - @gtm-support/vue-gtm
+
+### Sentry
+
+
 
 ## Linters
 
 ### PHP
 
 - phpcs (should be install globally)
-- [x] [vscode](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs)
-- [ ] action
-
-```bash
-composer global require squizlabs/php_codesniffer
-composer global require emielmolenaar/phpcs-laravel
-```
-
+  - `composer global require squizlabs/php_codesniffer`
+    `composer global require emielmolenaar/phpcs-laravel`
+  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs)
+  - [ ] action
 - php built-in linter
   - [x] vscode built-in plugin
   - [ ] action
@@ -65,26 +59,20 @@ composer global require emielmolenaar/phpcs-laravel
 
 ### PHP with Pest
 
-```bash
-php artisan test
-```
+    php artisan test
 
 - [ ] code coverage
 - [ ] action
 
 ### Browser with Laravel Dusk
 
-```bash
-php artisan pest:dusk
-```
+    php artisan pest:dusk
 
 - [ ] action
 
 ### JS with Jest
 
-```bash
 TODO
-```
 
 - [ ] code coverage
 - [ ]  action

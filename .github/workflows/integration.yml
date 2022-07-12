@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: clone repo
@@ -21,10 +21,10 @@ jobs:
           path: source/.php-version
 
       - name: Setup PHP
-        id: setup-php
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ steps.php-version.outputs.content }}
+          extensions: pdo_sqlite
 
       - name: Read node-version
         id: node-version
@@ -32,19 +32,37 @@ jobs:
         with:
           path: source/.node-version
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ steps.node-version.outputs.content }}
 
-      - name: cache npm
+      - name: Cache npm
+        if: ${{ !env.ACT }}
         uses: actions/cache@v2
         with:
           path: source/node_modules
           key: ${{ runner.os }}-${{ hashFiles('source/package-lock.json') }}
 
-      - name: cache composer
+      - name: Cache composer
+        if: ${{ !env.ACT }}
         uses: actions/cache@v2
         with:
           path: source/vendor
           key: ${{ runner.os }}-${{ hashFiles('source/composer.lock') }}
+
+      - uses: mirromutth/mysql-action@v1.1
+        if: ${{ !env.ACT }}
+        with:
+          host port: 3800 # Optional, default value is 3306. The port of host
+          mysql database: 'testing' # Optional, default value is "test". The specified database which will be create
+          mysql root password: admin # Required if "mysql user" is empty, default is empty. The root superuser password
+
+      - name: Build source
+        working-directory: source
+        run: .github/scripts/build.sh
+
+      - name: Lint source
+        working-directory: source
+        run: .github/scripts/lint.sh
 
