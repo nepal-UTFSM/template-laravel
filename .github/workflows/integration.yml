@@ -18,6 +18,9 @@ jobs:
         with:
           name: full_application
 
+      - name: untar application
+        run: mkdir source ; tar -x -f full_application.tar ./source
+
       - name: Read php-version
         id: php-version
         uses: juliangruber/read-file-action@v1
