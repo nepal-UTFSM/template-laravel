@@ -19,7 +19,7 @@ jobs:
           name: full_application
 
       - name: untar application
-        run: mkdir source ; tar -x -f full_application.tar ./source
+        run: mkdir source ; tar -x -f full_application.tar -C ./source
 
       - name: Read php-version
         id: php-version
@@ -59,7 +59,7 @@ jobs:
           name: full_application
 
       - name: untar application
-        run: mkdir source ; tar -x -f full_application.tar ./source
+        run: mkdir source ; tar -x -f full_application.tar -C ./source
 
       - name: Read php-version
         id: php-version
