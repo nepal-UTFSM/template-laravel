@@ -7,7 +7,7 @@ chmod a+w -R ./bootstrap/
 chmod a+w -R ./storage/
 
 composer install --no-ansi --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
-npm i --only=prod
+npm ci
 
 php artisan storage:link --relative
 

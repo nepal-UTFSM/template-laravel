@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
+        "emielmolenaar/phpcs-laravel": "^2.1",
         "fakerphp/faker": "^1.9.1",
         "getsolaris/laravel-make-service": "^1.1",
         "laravel/dusk": "^6.24",
@@ -39,7 +40,9 @@
         "pestphp/pest-plugin-mock": "^1.0",
         "phpstan/phpstan": "^1.7",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "slevomat/coding-standard": "^8.2",
+        "spatie/laravel-ignition": "^1.0",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {
@@ -54,6 +57,12 @@
         }
     },
     "scripts": {
+        "phpstan": [
+            "./vendor/bin/phpstan"
+        ],
+        "phpcs": [
+            "./vendor/bin/phpcs"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

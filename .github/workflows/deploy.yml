@@ -9,6 +9,72 @@ on:
   workflow_dispatch:
 
 jobs:
+  build_deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+        with:
+          path: source
+
+
+      - name: Read php-version
+        id: php-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.php-version
+
+      - name: Read node-version
+        id: node-version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: source/.node-version
+
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php-version.outputs.content }}
+          extensions: pdo_sqlite
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.node-version.outputs.content }}
+
+
+      - name: Cache NPM
+        if: ${{ !env.ACT }}
+        uses: actions/cache@v2
+        with:
+          path: source/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('source/package-lock.json') }}
+
+      - name: Cache Composer
+        if: ${{ !env.ACT }}
+        uses: actions/cache@v2
+        with:
+          path: source/vendor
+          key: ${{ runner.os }}-${{ hashFiles('source/composer.lock') }}
+
+
+      - name: Copy .env file
+        uses: up9cloud/action-rsync@v1.3
+        env:
+          HOST: ${{ secrets.SSH_HOST }}
+          USER: ${{ secrets.SSH_USER }}
+          KEY: ${{ secrets.SSH_KEY }}
+          PORT: ${{ secrets.SSH_PORT }}
+          MODE: pull
+          SOURCE: ${{ secrets.REMOTE_PATH_PROD }}/.env
+          TARGET: ./source
+
+
+      - name: Build source
+        working-directory: source
+        run: .github/scripts/build.sh
+
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

@@ -17,8 +17,7 @@
     }
   },
   "extends": [
-    "plugin:vue/vue3-recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:vue/vue3-recommended"
   ],
   "rules": {
     "accessor-pairs": 0,
