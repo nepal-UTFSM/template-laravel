@@ -57,7 +57,7 @@ jobs:
 
       - name: Build source
         working-directory: source
-        run: .github/scripts/build.sh
+        run: .github/scripts/build-dev.sh
 
       - name: Tar source
         run: tar -c -f full_application.tar source
