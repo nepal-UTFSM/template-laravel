@@ -2,7 +2,7 @@
 
 result=0
 trap 'result=1' ERR
-find . -path ./vendor -prune -o -path ./storage -prune -o -type f -name '*.php' -exec php -l {} 2>&1 >/dev/null \; > phplint.txt
+find . -path ./vendor -prune -o -path ./storage -prune -o -type f -name '*.php' -exec php -l {} 2>&1 >/dev/null \; 2> phplint.txt
 cat phplint.txt | sed -r "s|PHP ([[:graph:][:space:]]*) in ([[:graph:]]*) on line ([[:digit:]]*)|::error file=\2,line=\3,col=0::\1|m"
 
 ./vendor/bin/phpstan --memory-limit=1G --no-progress --error-format=github

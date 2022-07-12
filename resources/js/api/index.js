@@ -14,7 +14,7 @@ api.interceptors.response.use(
 );
 
 api.interceptors.request.use(config => {
-  const newConfig = { ...config};
+  const newConfig = { ...config };
   if (newConfig.headers['Content-Type'] === 'multipart/form-data') {
     return newConfig;
   }

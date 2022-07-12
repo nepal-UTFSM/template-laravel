@@ -16,7 +16,7 @@ export default {
     return { example };
   },
   computed: {
-    ...mapState(exampleStore, ['prop'])
+    ...mapState(exampleStore, ['prop']),
   },
 };
 </script>
