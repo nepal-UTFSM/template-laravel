@@ -1,6 +1,8 @@
 name: Build
 
 on:
+  pull_request:
+
   workflow_dispatch:
 
   workflow_call:
@@ -59,15 +61,12 @@ jobs:
         working-directory: source
         run: .github/scripts/build.sh
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: my_file.txt
+      - name: Tar
+        run: tar -c -z -f full_application.tar source
 
-      - name: upload application
+      - name: Upload full application
         uses: actions/upload-artifact@v2
         with:
-          name: application
-          path: application.tar
+          name: full_application
+          path: full_aplication.tar
 
