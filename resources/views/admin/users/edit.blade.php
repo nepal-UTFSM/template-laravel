@@ -1,5 +1,4 @@
-<x-admin.resource.index
+<x-admin.resource.edit
   model-name='user'
-  :models="$users"
-  :attrs="['id', 'name', 'email']"
+  :model="$user"
 />

@@ -14,7 +14,7 @@ class TitleBar extends Component
     public function __construct(
         public string $title,
         public string $prevUrl,
-        public ?string $query,
+        public ?string $query = null,
     ) {
         //
     }

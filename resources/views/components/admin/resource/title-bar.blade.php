@@ -11,8 +11,8 @@
   @endif
   <div class="ml-auto"></div>
 
-  <form action="{{ route('admin.users.index') }}" method="GET" class="flex">
-    <input name="search_query" class="rounded-l p-3 bg-gray-800 text-white text-opacity-80" placeholder="search">
+  <form action="{{ route('admin.users.index') }}" method="GET" class="flex text-white">
+    <input name="search_query" class="rounded-l p-3 bg-gray-800" placeholder="search">
     <button class="rounded-r bg-indigo-800 p-3 flex items-center"><span class="iconify-inline text-lg" data-icon="mdi:magnify"></span></button>
   </form>
 
