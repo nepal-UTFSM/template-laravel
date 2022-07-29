@@ -1,0 +1,14 @@
+runner:
+  phpstan:
+    cmd: ./source/vendor/bin/phpstan --memory-limit=1G --error-format=raw
+    format: phpstan
+    level: error
+  phpcs:
+    cmd: ./source/vendor/bin/phpcs --ignore=vendor --standard=./phpcs.xml --extensions=php --report=checkstyle -q .
+    format: checkstyle
+    level: info
+  eslint:
+    cmd: ./source/node_modules/.bin/eslint ./resources/**/*.{js,vue} -f compact
+    format: eslint-compact
+    level: error
+
