@@ -12,7 +12,7 @@ import pinia from './stores';
 
 import ExampleComponent from './components/exampleComponent.vue';
 
-const app = createApp();
+const app = createApp()
 
 Sentry.init({
   app,

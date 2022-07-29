@@ -59,88 +59,13 @@ jobs:
         working-directory: source
         run: .github/scripts/build-dev.sh
 
-      - name: Tar source
-        run: tar -c -f full_application.tar source
 
-      - name: Upload full application
-        uses: actions/upload-artifact@v2
+      - uses: reviewdog/action-setup@v1
         with:
-          name: full_application
-          path: full_application.tar
+          reviewdog_version: v0.14.1
 
-  lint:
-    needs: build
-    runs-on: ubuntu-22.04
-    steps:
-      - name: download application
-        uses: actions/download-artifact@v2
-        with:
-          name: full_application
+      - name: Run reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: reviewdog -reporter=github-pr-check -conf=source/.reviewdog.yml
 
-      - name: untar application
-        run: tar -x -f full_application.tar
-
-
-      - name: Read php-version
-        id: php-version
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: source/.php-version
-
-      - name: Read node-version
-        id: node-version
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: source/.node-version
-
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ steps.php-version.outputs.content }}
-          extensions: pdo_sqlite
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ steps.node-version.outputs.content }}
-
-
-      - name: Lint source
-        working-directory: source
-        run: .github/scripts/lint.sh
-
-  test:
-    needs: build
-    runs-on: ubuntu-22.04
-    steps:
-      - name: download application
-        uses: actions/download-artifact@v2
-        with:
-          name: full_application
-
-      - name: untar application
-        run: tar -x -f full_application.tar
-
-      - name: Read php-version
-        id: php-version
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: source/.php-version
-
-      - name: Read node-version
-        id: node-version
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: source/.node-version
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ steps.php-version.outputs.content }}
-          extensions: pdo_sqlite
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ steps.node-version.outputs.content }}
