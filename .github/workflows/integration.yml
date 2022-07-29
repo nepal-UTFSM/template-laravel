@@ -67,8 +67,5 @@ jobs:
       - name: Run reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./source/vendor/bin/phpstan --memory-limit=1G --error-format=raw --configuration=./source/phpstan.neon | reviewdog -reporter=github-pr-check -f=phpstan -tee
-          ./source/vendor/bin/phpcs --ignore=vendor --standard=./source/phpcs.xml --extensions=php --report=checkstyle -q .  | reviewdog -reporter=github-pr-check -f=checkstyle -tee
-          ./source/node_modules/.bin/eslint ./source/resources/**/*.{js,vue} -c ./source/.eslintrc.json -f compact | reviewdog -reporter=github-pr-check -f=eslint-compact -tee
+        run: cd source && reviewdog -reporter=github-check -tee
 
