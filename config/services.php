@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -36,5 +35,4 @@ return [
         'auth' => env('TAG_MANAGER_AUTH', ''),
         'preview' => env('TAG_MANAGER_ENV', ''),
     ],
-
 ];

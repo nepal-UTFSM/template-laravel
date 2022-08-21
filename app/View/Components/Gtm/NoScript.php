@@ -13,7 +13,6 @@ class NoScript extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -25,7 +24,9 @@ class NoScript extends Component
     {
         $container = config('tag_manager.container');
 
-        if (! $container) return '';
+        if (!$container) {
+            return '';
+        }
 
         return '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$container.'"height="0"width="0"style="display:none;visibility:hidden"></iframe></noscript>';
     }

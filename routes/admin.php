@@ -16,8 +16,8 @@ use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 |
 */
 
-Route::get('/', [AdminController::class, 'index'])->name('index');
+// Route::get('/', [AdminController::class, 'index'])->name('index');
 
-Route::resource('users', UserController::class);
+// Route::resource('users', UserController::class);
 
-Route::get('logs', [LogViewerController::class, 'index'])->name('logs');
+// Route::get('logs', [LogViewerController::class, 'index'])->name('logs');

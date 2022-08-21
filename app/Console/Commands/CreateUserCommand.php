@@ -32,7 +32,7 @@ class CreateUserCommand extends Command
         $email = 'admin@example.com';
         $password = 'password';
 
-        if (! $this->option('default')) {
+        if (!$this->option('default')) {
             $name = $this->ask('What is your name?');
             $email = $this->ask('What is your email?');
             $password = $this->secret('What is your password?');

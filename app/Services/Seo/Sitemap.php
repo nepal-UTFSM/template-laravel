@@ -7,8 +7,7 @@ use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
 /**
- * Class Sitemap
- * @package App\Services
+ * Class Sitemap.
  */
 class Sitemap
 {

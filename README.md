@@ -26,34 +26,26 @@
 
 ### PHP
 
-- phpcs (should be install globally)
-  - `composer global require squizlabs/php_codesniffer`
-    `composer global require emielmolenaar/phpcs-laravel`
-  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs)
-  - [ ] action
-- php built-in linter
-  - [x] vscode built-in plugin
-  - [ ] action
-
 - phpstan with larastan (already installed)
   - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=swordev.phpstan)
   - [ ] action
 
-- tlint?
+- php-cs-fixer (already installed)
+  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer)
+  - [ ] action
 
 ### JS
 
-- eslint (rules from [Potassium](https://github.com/platanus/potassium/blob/master/lib/potassium/assets/.eslintrc.json))
+- eslint
   - [x] vscode
   - [ ] action
 
-- stylelint (rules from [Potassium](https://github.com/platanus/potassium/blob/master/lib/potassium/assets/.stylelintrc.json))
+- stylelint
   - [ ] vscode
   - [ ] action
 
 ### Extra
 
-- dotenv-lint?
 
 ## Testing
 

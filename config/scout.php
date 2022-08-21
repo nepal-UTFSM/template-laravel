@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Search Engine
@@ -144,7 +143,7 @@ return [
     */
 
     'tntsearch' => [
-        'storage'  => storage_path('app/tntsearch'),
+        'storage' => storage_path('app/tntsearch'),
         'fuzziness' => env('TNTSEARCH_FUZZINESS', true),
         'fuzzy' => [
             'prefix_length' => 2,
@@ -155,5 +154,4 @@ return [
         'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
         'maxDocs' => env('TNTSEARCH_MAX_DOCS', 500),
     ],
-
 ];

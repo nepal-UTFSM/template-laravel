@@ -11,3 +11,4 @@ _ide_helper.php
 .phpunit.result.cache
 error_log
 npm-debug.log
+.php-cs-fixer.cache

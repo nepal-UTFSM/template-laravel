@@ -4,6 +4,6 @@
 
 set -e
 
-docker-compose up -d
+docker-compose -f docker-compose.shared.yml up -d
 
 npm run watch

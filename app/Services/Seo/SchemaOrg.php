@@ -3,10 +3,8 @@
 namespace App\Services\Seo;
 
 /**
- * Class SchemaOrg
- * @package App\Services
+ * Class SchemaOrg.
  */
 class SchemaOrg
 {
-    //
 }

@@ -12,7 +12,7 @@
     </div>
     @endif
     <div class="flex col-span-12 bg-white rounded shadow-lg py-6 flex-col items-center">
-      <form action="{{ route('auth.authenticate') }}" method="POST">
+      <form action="/login" method="POST">
         @csrf
         <button type="submit" class="p-4 font-medium">
           Log in

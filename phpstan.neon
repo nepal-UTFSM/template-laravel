@@ -4,8 +4,10 @@ includes:
 parameters:
     paths:
         - app
-        - database
+        - config
+        - lang
         - resources
+        - routes
 
     # The level 9 is the highest level
     level: 8

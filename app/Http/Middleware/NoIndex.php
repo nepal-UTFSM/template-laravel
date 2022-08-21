@@ -7,9 +7,11 @@ use Spatie\RobotsMiddleware\RobotsMiddleware;
 
 class NoIndex extends RobotsMiddleware
 {
-    protected function shouldIndex(Request $request) : bool
+    protected function shouldIndex(Request $request): bool
     {
-        if (config('app.actual_env') != 'production') return false;
+        if (config('app.actual_env') != 'production') {
+            return false;
+        }
 
         return true;
     }

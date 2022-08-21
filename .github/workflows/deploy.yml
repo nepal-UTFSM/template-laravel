@@ -12,6 +12,17 @@ jobs:
   build_deploy:
     runs-on: ubuntu-22.04
     steps:
+      - name: Settings for main
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          echo "REMOTE_PATH=${{ secrets.REMOTE_PATH_MAIN }}" >> $GITHUB_ENV
+
+      - name: Settings for prod
+        if: ${{ github.ref == 'refs/heads/prod' }}
+        run: |
+          echo "REMOTE_PATH=${{ secrets.REMOTE_PATH_PROD }}" >> $GITHUB_ENV
+
+
       - name: Clone repo
         uses: actions/checkout@v2
         with:

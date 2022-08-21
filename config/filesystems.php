@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -29,7 +28,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -69,7 +67,6 @@ return [
             'root' => 'database/data',
             'throw' => false,
         ],
-
     ],
 
     /*
@@ -87,5 +84,4 @@ return [
         public_path('storage') => storage_path('app/public'),
         storage_path('app/assets/vendor') => public_path('vendor'),
     ],
-
 ];

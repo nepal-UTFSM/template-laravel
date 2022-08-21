@@ -18,12 +18,13 @@ class SchemaOrg extends Component
      */
     public function render()
     {
-        $output = "";
+        $output = '';
 
         foreach ($this->schema as $schema) {
             $output += $schema->toScript();
         }
 
+        // @phpstan-ignore-next-line
         return $output;
     }
 }

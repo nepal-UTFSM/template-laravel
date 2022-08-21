@@ -17,8 +17,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(Tests\TestCase::class)->in('Feature');
 uses(DatabaseMigrations::class)->in('Browser/Shop');
 uses(DatabaseMigrations::class)->in('Feature');
-# uses(RefreshDatabase::class)->in('Feature');
-
+// uses(RefreshDatabase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

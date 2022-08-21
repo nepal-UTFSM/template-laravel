@@ -1,14 +1,9 @@
 module.exports = {
-  content: [
-    './storage/framework/views/*.php',
-    './resources/**/*.blade.php',
-    './resources/**/*.js',
-    './resources/**/*.vue',
-  ],
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-  ],
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
