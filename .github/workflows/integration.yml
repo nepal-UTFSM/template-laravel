@@ -67,5 +67,5 @@ jobs:
       - name: Run reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: cd source && reviewdog -reporter=github-check -tee
+        run: cd source && reviewdog -reporter=github-pr-review -tee
 
