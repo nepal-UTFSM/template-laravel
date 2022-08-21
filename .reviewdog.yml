@@ -9,6 +9,6 @@ runner:
     level: error
   php-cs-fixer:
     cmd: ./vendor/bin/php-cs-fixer fix --dry-run --format checkstyle
-    format: diff
+    format: checkstyle
     level: warning
 
