@@ -6,12 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "doctrine/dbal": "^3.4",
+        "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "laravel/fortify": "^1.13",
         "laravel/framework": "^9.19.0",
-        "laravel/sanctum": "^2.14.1",
         "laravel/scout": "^9.4",
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.5",
         "propaganistas/laravel-phone": "^4.3",
         "rap2hpoutre/laravel-log-viewer": "^2.2",
         "sentry/sentry-laravel": "^2.12",
@@ -22,12 +25,13 @@
         "spatie/schema-org": "^3.11",
         "symfony/filesystem": "^6.1",
         "teamtnt/laravel-scout-tntsearch-driver": "^11.6",
-        "teamtnt/tntsearch": "^2.9"
+        "teamtnt/tntsearch": "^2.9",
+        "vinkla/hashids": "^10.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
-        "emielmolenaar/phpcs-laravel": "^2.1",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.10",
         "getsolaris/laravel-make-service": "^1.1",
         "laravel/dusk": "^6.24",
         "laravel/sail": "^1.0.1",
@@ -40,9 +44,7 @@
         "pestphp/pest-plugin-mock": "^1.0",
         "phpstan/phpstan": "^1.7",
         "phpunit/phpunit": "^9.5.10",
-        "slevomat/coding-standard": "^8.2",
-        "spatie/laravel-ignition": "^1.0",
-        "squizlabs/php_codesniffer": "*"
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -57,18 +59,13 @@
         }
     },
     "scripts": {
-        "phpstan": [
-            "./vendor/bin/phpstan"
-        ],
-        "phpcs": [
-            "./vendor/bin/phpcs"
-        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan filament:upgrade"
         ]
     },
     "extra": {
@@ -82,8 +79,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "dealerdirect/phpcodesniffer-composer-installer": false
+            "pestphp/pest-plugin": true
         }
     },
     "minimum-stability": "dev",
