@@ -3,7 +3,7 @@ runner:
     cmd: ./vendor/bin/phpstan --memory-limit=1G --error-format=raw
     format: phpstan
     level: error
-  eslint:
+  eslint-errors:
     cmd: ./node_modules/.bin/eslint ./resources/**/*.{js,vue} -f compact --quiet
     format: eslint-compact
     level: error
@@ -11,7 +11,7 @@ runner:
     cmd: ./vendor/bin/php-cs-fixer fix --dry-run --diff
     format: diff
     level: warning
-  eslint:
+  eslint-style:
     cmd: ./node_modules/.bin/eslint ./resources/**/*.{js,vue} -f compact
     format: eslint-compact
     level: warning
