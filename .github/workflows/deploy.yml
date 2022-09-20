@@ -3,6 +3,7 @@ name: Deploy
 on:
   push:
     branches:
+      - next
       - main
       - prod
 
@@ -12,15 +13,26 @@ jobs:
   build_deploy:
     runs-on: ubuntu-22.04
     steps:
+      - name: Settings for next
+        if: ${{ github.ref == 'refs/heads/next' }}
+        run: |
+          echo "REMOTE_PATH=${{ secrets.REMOTE_PATH_NEXT }}" >> $GITHUB_ENV
+          echo "REMOTE_URL=${{ secrets.REMOTE_URL_NEXT }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT_NAME=next" >> $GITHUB_ENV
+
       - name: Settings for main
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           echo "REMOTE_PATH=${{ secrets.REMOTE_PATH_MAIN }}" >> $GITHUB_ENV
+          echo "REMOTE_URL=${{ secrets.REMOTE_URL_MAIN }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT_NAME=staging" >> $GITHUB_ENV
 
       - name: Settings for prod
         if: ${{ github.ref == 'refs/heads/prod' }}
         run: |
           echo "REMOTE_PATH=${{ secrets.REMOTE_PATH_PROD }}" >> $GITHUB_ENV
+          echo "REMOTE_URL=${{ secrets.REMOTE_URL_PROD }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT_NAME=production" >> $GITHUB_ENV
 
 
       - name: Clone repo
@@ -77,13 +89,13 @@ jobs:
           KEY: ${{ secrets.SSH_KEY }}
           PORT: ${{ secrets.SSH_PORT }}
           MODE: pull
-          SOURCE: ${{ secrets.REMOTE_PATH_PROD }}/.env  # TODO
+          SOURCE: ${{ env.REMOTE_PATH }}/.env
           TARGET: ./source
 
 
       - name: Build source
         working-directory: source
-        run: .github/scripts/build.sh
+        run: .github/scripts/build-prod.sh
 
 
       - name: start deployment
@@ -92,46 +104,37 @@ jobs:
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: staging # TODO
+          env: ${{ env.ENVIRONMENT_NAME }}
 
       - name: laravel down
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-php artisan down --render="errors::503" --secret="force-up"  # TODO
+          script: cd ${{ env.REMOTE_PATH }} ; ./bin/prod/down
           use_insecure_cipher: true
 
       - name: deploy to server
-        uses: easingthemes/ssh-deploy@main
+        uses: easingthemes/ssh-deploy@v2.2.11
         env:
-          ARGS: "-a -c -v -z -h --exclude-from='application/.rsyncignore' --delete-after"
+          ARGS: "-a -c -v -z -h --exclude-from='source/.rsyncignore' --delete-after"
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          TARGET: ${{ secrets.REMOTE_PATH_MAIN }}  # TODO
-          SOURCE: application/
-
-      - name: laravel cache
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-env  # TODO
-          use_insecure_cipher: true
+          TARGET: ${{ env.REMOTE_PATH }}
+          SOURCE: source/
 
       - name: laravel up
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: cd ${{ secrets.REMOTE_PATH_MAIN }} ; bin/prod-php artisan up  # TODO
+          script: cd ${{ env.REMOTE_PATH }} ; ./bin/prod/up
           use_insecure_cipher: true
 
       - name: update deployment status
@@ -142,4 +145,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.start_deploy.outputs.deployment_id }}
-          env_url: "${{ secrets.REMOTE_URL_MAIN }}"  # TODO
+          env_url: "${{ env.REMOTE_URL }}"
