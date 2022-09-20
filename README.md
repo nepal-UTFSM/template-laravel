@@ -24,28 +24,21 @@
 
 ## Linters
 
+All linters are installed as dev dependencies.
+All linters are runned on integration workflow through reviewdog.
+
 ### PHP
 
-- phpstan with larastan (already installed)
-  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=swordev.phpstan)
-  - [ ] action
+- phpstan with larastan rules
+  - [vscode extesion](https://marketplace.visualstudio.com/items?itemName=swordev.phpstan)
 
-- php-cs-fixer (already installed)
-  - [x] [vscode](https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer)
-  - [ ] action
+- php-cs-fixer
+  - [vscode extesion](https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer)
 
 ### JS
 
 - eslint
-  - [x] vscode
-  - [ ] action
-
-- stylelint
-  - [ ] vscode
-  - [ ] action
-
-### Extra
-
+  - [vscode extesion](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 ## Testing
 
@@ -61,23 +54,3 @@
     php artisan pest:dusk
 
 - [ ] action
-
-### JS with Jest
-
-TODO
-
-- [ ] code coverage
-- [ ]  action
-
-## Github Actions
-
-### integration workflow
-
-- [ ] Build PHP
-- [ ] Build Node
-- [ ] composer cache
-- [ ] composer isntall
-- [ ] node cache
-- [ ] node install
-- [ ] run linters
-- [ ] run testing
