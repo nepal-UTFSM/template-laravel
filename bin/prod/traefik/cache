@@ -1,0 +1,5 @@
+#! /bin/bash
+
+./bin/prod/exec php artisan config:cache
+./bin/prod/exec php artisan route:cache
+./bin/prod/exec php artisan view:cache
