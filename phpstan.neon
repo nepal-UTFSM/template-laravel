@@ -1,5 +1,6 @@
 includes:
     - ./vendor/nunomaduro/larastan/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     paths:
@@ -8,6 +9,7 @@ parameters:
         - lang
         - resources
         - routes
+        - tests/Helpers
 
     # The level 9 is the highest level
     level: 8

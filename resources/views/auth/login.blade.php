@@ -1,33 +1,38 @@
 @extends('auth.template.main')
+
 @section('content')
-<div class="container mx-auto mt-40 grid grid-cols-12 gap-3 justify-center">
-  <div class="col-span-4 col-start-5 grid grid-cols-12 gap-3">
-    @if ($errors->any())
-    <div class="flex col-span-12 bg-red-500 rounded shadow-red p-4 text-white">
-      <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-      </ul>
+  <x-base.layout.container class="mx-auto h-screen w-96">
+    <div class="col-span-12">
+      <x-base.form.errors />
     </div>
-    @endif
-    <div class="flex col-span-12 bg-white rounded shadow-lg py-6 flex-col items-center">
-      <form action="/login" method="POST">
-        @csrf
-        <button type="submit" class="p-4 font-medium">
-          Log in
-        </button>
-        <div class="mt-4">
-          <input class="bg-white border rounded p-2" type="email" name="email" placeholder="Email" required>
-        </div>
-        <div class="mt-4">
-          <input class="bg-white border rounded p-2" type="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="mt-4">
-          <button class="bg-indigo-800 p-3 px-6 text-white rounded">Log in</button>
-        </div>
-      </form>
+    <div class="col-span-12">
+      <x-base.card>
+        <form
+          action="/login"
+          method="POST"
+          class="flex flex-col gap-5"
+        >
+          @csrf
+          <h2 class="py-3 text-center text-lg">
+            {{ config('app.name') }}
+          </h2>
+          <x-base.form.input-text
+            type="email"
+            name="email"
+            placeholder="{{ __('email') }}"
+            required
+            class="h-12"
+          />
+          <x-base.form.input-text
+            type="password"
+            name="password"
+            placeholder="{{ __('password') }}"
+            required
+            class="h-12"
+          />
+          <button class="mt-3 rounded bg-indigo-800 p-3 px-6 text-white">{{ __('log in') }}</button>
+        </form>
+      </x-base.card>
     </div>
-  </div>
-  </div>
+  </x-base.layout.container>
 @endsection

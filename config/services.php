@@ -29,10 +29,4 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
-    'tag_manager' => [
-        'container' => env('TAG_MANAGER_CONTAINER', ''),
-        'auth' => env('TAG_MANAGER_AUTH', ''),
-        'preview' => env('TAG_MANAGER_ENV', ''),
-    ],
 ];

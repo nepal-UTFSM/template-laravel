@@ -1,5 +1,8 @@
 <template>
-  <div style="" class="flex">
+  <div
+    style=""
+    class="flex"
+  >
     i18n: {{ $t('example') }} <br>
     pinia: {{ example.prop }} - {{ prop }}
   </div>

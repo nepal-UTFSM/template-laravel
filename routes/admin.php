@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
@@ -16,8 +14,4 @@ use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 |
 */
 
-// Route::get('/', [AdminController::class, 'index'])->name('index');
-
-// Route::resource('users', UserController::class);
-
-// Route::get('logs', [LogViewerController::class, 'index'])->name('logs');
+Route::get('logs', [LogViewerController::class, 'index'])->name('logs');
