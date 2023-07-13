@@ -25,7 +25,11 @@ export default defineConfig(({ mode }) => {
           'resources/css/app.css',
           'resources/js/app.js',
         ],
-        refresh: true,
+        refresh: [
+          'app/**',
+          'resources/**',
+          'routes/**',
+        ],
       }),
       vue({
         template: {
