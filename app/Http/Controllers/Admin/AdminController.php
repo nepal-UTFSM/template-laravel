@@ -9,6 +9,6 @@ class AdminController extends Controller
 {
     public function index(): View
     {
-        return view('admin.index'); // @phpstan-ignore-line
+        return view('admin.index');
     }
 }
