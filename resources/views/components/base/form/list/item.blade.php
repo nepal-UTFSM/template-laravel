@@ -8,11 +8,7 @@ For example:
 
 --}}
 
-@props([
-  'attribute',
-  'name' => $attribute,
-  'input' => 'text',
-])
+@props(['attribute', 'name' => $attribute, 'input' => 'text'])
 
 <div class="grid grid-cols-12 items-center py-2">
   <div class="col-span-4">

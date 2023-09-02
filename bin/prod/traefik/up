@@ -1,5 +1,0 @@
-#! /bin/bash
-
-./bin/prod/cache
-
-./bin/prod/exec php artisan up

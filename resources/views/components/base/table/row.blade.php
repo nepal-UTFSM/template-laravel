@@ -3,15 +3,15 @@
 --}}
 
 @props([
-  'link' => false,
+    'href' => false,
 ])
 
-@if($link)
-  <a href="{{ $link }}">
+@if ($href)
+  <a href="{{ $href }}">
 @endif
-  <div class="py-4 px-6 grid grid-cols-12 bg-black bg-opacity-0 hover:bg-opacity-5">
-    {{ $slot }}
-  </div>
-@if($link)
+<div class="grid grid-cols-12 bg-black bg-opacity-0 px-6 py-4 hover:bg-opacity-5">
+  {{ $slot }}
+</div>
+@if ($href)
   </a>
 @endif

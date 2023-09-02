@@ -22,7 +22,13 @@ class CreateTestingDatabaseCommand extends Command
      */
     public function handle(): int
     {
-        DB::statement('CREATE DATABASE testing');
+        try {
+            DB::statement('CREATE DATABASE testing');
+        } catch (\Exception $e) {
+            $this->error('Database already exists!');
+
+            return 0;
+        }
 
         $this->info('Database created successfully!');
 

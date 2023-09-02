@@ -31,13 +31,23 @@
   </x-base.card.table>
 --}}
 
-@props(['header' => false])
+@props(['header' => false, 'footer' => false])
 
 @if ($header)
-  <div class="px-6 py-4 rounded-t-lg font-medium grid grid-cols-12 text-black text-opacity-90 bg-black bg-opacity-5 dark:bg-white dark:bg-opacity-5 dark:text-white">
+  <div
+    class="grid grid-cols-12 rounded-t-lg bg-black bg-opacity-5 px-6 py-4 font-medium text-black text-opacity-90 dark:bg-white dark:bg-opacity-5 dark:text-white"
+  >
     {{ $header }}
   </div>
 @endif
-<div class="py-6 flex flex-col my-[-1rem] divide-y divide-black dark:divide-white divide-opacity-5 dark:divide-opacity-5">
+<div
+  class="my-[-1rem] flex flex-col divide-y divide-black divide-opacity-5 py-6 dark:divide-white dark:divide-opacity-5">
   {{ $slot }}
 </div>
+@if ($footer)
+  <div
+    class="grid grid-cols-12 rounded-b-lg bg-black bg-opacity-5 px-6 py-4 font-medium text-black text-opacity-90 dark:bg-white dark:bg-opacity-5 dark:text-white"
+  >
+    {{ $footer }}
+  </div>
+@endif

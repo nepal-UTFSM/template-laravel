@@ -13,7 +13,7 @@ RUN yum -y install \
 
 RUN yum-config-manager --enable remi-php81 && yum -y update
 
-RUN yum -y install httpd php
+RUN yum -y install httpd php mysql
 
 RUN yum -y install \
     php-pdo \
@@ -24,11 +24,14 @@ RUN yum -y install \
     php-exif \
     php-bcmath \
     php-gd \
-    php-pecl-zip
+    php-pecl-zip \
+    php-xdebug
 
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 
 COPY php.ini /etc/php.ini
+
+COPY 99-xdebug.ini /etc/php.d/99-xdebug.ini
 
 ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
 

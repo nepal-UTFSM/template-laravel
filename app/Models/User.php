@@ -18,10 +18,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string                                                                                                        $password
  * @property string|null                                                                                                   $two_factor_secret
  * @property string|null                                                                                                   $two_factor_recovery_codes
- * @property string|null                                                                                                   $two_factor_confirmed_at
  * @property string|null                                                                                                   $remember_token
  * @property \Illuminate\Support\Carbon|null                                                                               $created_at
  * @property \Illuminate\Support\Carbon|null                                                                               $updated_at
+ * @property \App\Models\Admin|null                                                                                        $admin
  * @property \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property int|null                                                                                                      $notifications_count
  *
@@ -36,7 +36,6 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)

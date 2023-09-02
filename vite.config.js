@@ -9,6 +9,12 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   return {
+    server: {
+      host: true,
+    },
+    test: {
+      globals: true,
+    },
     build: {
       sourcemap: true,
     },
