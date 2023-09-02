@@ -1,42 +1,38 @@
-import Vue from 'vue';
-// eslint-disable-next-line no-unused-vars
-import Iconify from '@iconify/iconify';
+import { createApp } from 'vue';
 
-import * as Sentry from '@sentry/vue';
-import { Integrations } from '@sentry/tracing';
-
+import { Icon } from '@iconify/vue';
 import { camelizeKeys } from 'humps';
 
+import * as Sentry from '@sentry/vue';
+
 import i18n from './locales';
-import store from './store';
+import pinia from './stores';
 
-Vue.filter('camelizeKeys', camelizeKeys);
+const app = createApp();
 
-// credit to @Bill Criswell for this filter
-Vue.filter('truncate', (text, stop, clamp) => text.slice(0, stop) + (stop < text.length ? clamp || '...' : ''));
+import.meta.glob([
+  '../../resources/images/**',
+  '../../resources/fonts/**',
+]);
 
 Sentry.init({
-  Vue,
-  dsn: process.env.SENTRY_DSN || null,
-  environment: process.env.SENTRY_ENVIRONMENT,
+  app,
+  dsn: import.meta.env.VITE_SENTRY_DSN || null,
+  environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
   integrations: [
-    new Integrations.BrowserTracing(),
+    new Sentry.BrowserTracing(),
   ],
-  sampleRate: process.env.SENTRY_SAMPLE_RATE || false,
-  tracesSampleRate: process.env.SENTRY_TRACES_SAMPLE_RATE || false,
+  sampleRate: import.meta.env.VITE_SENTRY_SAMPLE_RATE || false,
+  tracesSampleRate: import.meta.env.VITE_SENTRY_TRACES_SAMPLE_RATE || false,
 });
 
-// eslint-disable-next-line max-statements
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('app') !== null) {
-    const app = new Vue({
-      el: '#app',
-      store,
-      i18n,
-    });
+app.use(i18n);
+app.use(pinia);
 
-    return app;
-  }
+app.config.globalProperties.$filters = {
+  camelizeKeys,
+};
 
-  return false;
-});
+app.component('VIcon', Icon);
+
+app.mount('#app');
